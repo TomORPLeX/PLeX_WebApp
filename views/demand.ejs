@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Demand EJS File</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+</head>
+<body>
+<header>
+    <% include ./partials/header %>
+</header>
+
+<table id="table" >
+    <thead>
+    <tr>
+        <th>OBJID</th>
+        <th>CRNT_REC_IND</th>
+        <th>DELETE_FLAG</th>
+        <th>ITEM_BITAND_OLD</th>
+        <th>QUEUE_ID</th>
+        <th>QUEUE_NAME</th>
+        <th>DURATION</th>
+        <th>ES_DATE</th>
+        <th>LS_DATE</th>
+        <th>CASE_RBD</th>
+        <th>CASE_STATUS</th>
+        <th>EXCH_POST_USED</th>
+        <th>TS</th>
+        <th>Closed_date</th>
+        <th>Order_OBJID</th>
+        <th>WORK_TYPE_ID</th>
+        <th>MIN_TEAM_SIZE</th>
+        <th>SKILL_RANK</th>
+        <th>SYSMESSAGE</th>
+        <th>MAX_TEAM_SIZE</th>
+        <th>CASE_ID</th>
+        <th>LARGE_ITEM_BITAND</th>
+        <th>ACTION</th>
+        <th>LANDING_DATE</th>
+        <th>ACTION_TIMESTAMP</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% for(var i=0;i<db.length;i++) { %>
+    <tr>
+        <td><%= db[i].OBJID %></td>
+        <td><%= db[i].CRNT_REC_IND %></td>
+        <td><%= db[i].DELETE_FLAG %></td>
+        <td><%= db[i].ITEM_BITAND_OLD %></td>
+        <td><%= db[i].QUEUE_ID %></td>
+        <td><%= db[i].QUEUE_NAME %></td>
+        <td><%= db[i].DURATION %></td>
+        <td><%= db[i].ES_DATE %></td>
+        <td><%= db[i].LS_DATE %></td>
+        <td><%= db[i].CASE_RBD %></td>
+        <td><%= db[i].CASE_STATUS %></td>
+        <td><%= db[i].EXCH_POST_USED%></td>
+        <td><%= db[i].TS %></td>
+        <td><%= db[i].CLOSED_DATE %></td>
+        <td><%= db[i].ORDER_OBJID %></td>
+        <td><%= db[i].WORK_TYPE_ID %></td>
+        <td><%= db[i].MIN_TEAM_SIZE %></td>
+        <td><%= db[i].SKILL_RANK %></td>
+        <td><%= db[i].SYSMESSAGE %></td>
+        <td><%= db[i].MAX_TEAM_SIZE %></td>
+        <td><%= db[i].CASE_ID %></td>
+        <td><%= db[i].LARGE_ITEM_BITAND %></td>
+        <td><%= db[i].ACTION %></td>
+        <td><%= db[i].LANDING_DATE %></td>
+        <td><%= db[i].ACTION_TIMESTAMP %></td>
+
+        <!--<td><%- JSON.stringify(db[0]) %></td>-->
+    </tr>
+    <% } %>
+    </tbody>
+</table>
+<footer>
+    <% include ./partials/footer %>
+</footer>
+</body>
+</html>
