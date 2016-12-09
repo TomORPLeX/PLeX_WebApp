@@ -14,6 +14,7 @@ var otd = require('./routes/otd');
 var db = require('./bin/db');
 var close =  require('./routes/close');
 
+
 var app = express();
 
 // view engine setup

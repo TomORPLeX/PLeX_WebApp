@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
+/* GET SQL data. */
 var obj = {};
 var quer1 = "SELECT * FROM test1 LIMIT 10";
 
@@ -26,6 +26,7 @@ router.get('/', function(req, res, next) {
         console.log('Connection Released');
     });
 });
-
-
 module.exports = router;
+
+
+
