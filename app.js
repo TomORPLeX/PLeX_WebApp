@@ -6,12 +6,13 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var fs = require('fs');
 
+var pool = require('./bin/db.js');
+
 var index = require('./routes/index');
 var loginpage = require('./routes/loginpage');
 var demand = require('./routes/demand');
 var dayminus1 = require('./routes/dayminus1');
 var otd = require('./routes/otd');
-var db = require('./bin/db');
 var close =  require('./routes/close');
 
 var app = express();
@@ -34,6 +35,43 @@ app.use('/demand', demand);
 app.use('/dayminus1', dayminus1);
 app.use('/otd', otd);
 app.use('/close', close);
+app.use('/submit', function(req,res) {
+  console.log('Data Captured, Name: '+req.body.nameinput);
+
+    var obj = {};
+    var quer3 = "SELECT * FROM test1 WHERE case_status='1'";
+    var quer4 = "UPDATE test1 SET CASE_STATUS=1 WHERE OBJID="+req.body.nameinput;
+    console.log('Update Query is [ '+quer4+' ]');
+    console.log('Select Query is [ '+quer3+' ]');
+
+    pool.query(quer4, function(err,rows)
+    {
+        if(err)
+        {
+            throw err;
+        } else
+        {
+            console.log('Database Updated');
+            pool.query( quer3, function(err,rows)
+            {
+                if(err)
+                {
+                    throw err;
+                } else
+                {
+                    obj = {db: rows};
+                    res.render('dayminus1', obj);
+                    console.log('new data displayed');
+                    console.log(JSON.stringify(rows));
+                }
+            });
+        }
+    });
+
+
+
+
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
