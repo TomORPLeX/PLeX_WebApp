@@ -67,10 +67,6 @@ app.use('/submit', function(req,res) {
             });
         }
     });
-
-
-
-
 });
 
 // catch 404 and forward to error handler

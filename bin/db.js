@@ -17,7 +17,6 @@ function ConnectDB() {
 
     return pool;
 }
-
 module.exports = ConnectDB();
 
 /*
