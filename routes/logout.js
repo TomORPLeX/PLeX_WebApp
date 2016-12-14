@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET login page. */
 router.get('/', function(req, res, next) {
-    res.render('loginpage');
+    loginFlag = 0;
+    console.log('loggedOut');
+    res.redirect('/');
 });
 
 module.exports = router;

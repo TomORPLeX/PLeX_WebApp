@@ -9,13 +9,19 @@ var fs = require('fs');
 var pool = require('./bin/db.js');
 
 var index = require('./routes/index');
-var loginpage = require('./routes/loginpage');
+var logincheck = require('./routes/logincheck');
 var demand = require('./routes/demand');
 var dayminus1 = require('./routes/dayminus1');
 var otd = require('./routes/otd');
 var close =  require('./routes/close');
+var logout =  require('./routes/logout');
+var admin =  require('./routes/admin');
 
 var app = express();
+
+//set loginFlag to 0
+global.loginFlag = 0;
+global.adminFlag = 0;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -30,11 +36,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/loginpage', loginpage);
+app.use('/logincheck', logincheck);
 app.use('/demand', demand);
 app.use('/dayminus1', dayminus1);
-app.use('/otd', otd);
+app.use('/otd',  otd);
 app.use('/close', close);
+app.use('/logout', logout);
+app.use('/admin', admin);
 app.use('/submit', function(req,res) {
   console.log('Data Captured, Name: '+req.body.nameinput);
 

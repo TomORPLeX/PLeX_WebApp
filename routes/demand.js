@@ -1,12 +1,13 @@
 var express = require('express');
 var router = express.Router();
 var pool = require('../bin/db.js');
+var loginfunction = require("../bin/login.js");
 
 /* GET home page. */
 var obj = {};
 var quer1 = "SELECT * FROM test1 LIMIT 10";
 
-router.get('/', function(req, res, next) {
+router.get('/', loginfunction.isLoggedIn, function(req, res) {
 
         pool.query(quer1, function(err,rows)
         {
