@@ -11,6 +11,7 @@
     <script src="http://leaflet.github.io/Leaflet.markercluster/dist/leaflet.markercluster-src.js"></script>
     <link rel="stylesheet" href="http://leaflet.github.io/Leaflet.markercluster/dist/MarkerCluster.css" />
     <link rel="stylesheet" href="http://leaflet.github.io/Leaflet.markercluster/dist/MarkerCluster.Default.css" />
+
 </head>
 <body>
 <header>
@@ -19,26 +20,26 @@
 
 
     <div class="row row-centered">
-
+        <form  onsubmit="mapUpdate(); return false;">
             <div class="col-sm-6 col-centered">
                 <div class="checkbox">
-                    <label class="checkbox-inline"><input type="checkbox" name="9091" ontoggle="">E-SIDE CJ</label>
-                    <label class="checkbox-inline"><input type="checkbox" name="" ontoggle="">D-SIDE CJ</label>
-                    <label class="checkbox-inline"><input type="checkbox" name="" ontoggle="">LIGHT CABLING</label>
+                    <label class="checkbox-inline"><input type="checkbox" name="filter0">E-SIDE CJ</label>
+                    <label class="checkbox-inline"><input type="checkbox" name="filter1">D-SIDE CJ</label>
+                    <label class="checkbox-inline"><input type="checkbox" name="filter2">LIGHT CABLING</label>
                 </div>
                 <div class="radio">
-                    <label class="checkbox-inline"><input type="checkbox" name="" ontoggle="">HEAVY CABLING</label>
-                    <label class="checkbox-inline"><input type="checkbox" name="" ontoggle="">PRECISION TEST OFFICER</label>
-                    <label class="checkbox-inline"><input type="checkbox" name="" ontoggle="">OVERHEAD CABLING</label>
+                    <label class="checkbox-inline"><input type="checkbox" name="filter3">HEAVY CABLING</label>
+                    <label class="checkbox-inline"><input type="checkbox" name="filter4">PRECISION TEST OFFICER</label>
+                    <label class="checkbox-inline"><input type="checkbox" name="filter5">OVERHEAD CABLING</label>
                 </div>
                 <div class="radio">
-                    <label class="checkbox-inline"><input type="checkbox" name="" ontoggle="">PRESSURE JOINTING</label>
-                    <label class="checkbox-inline"><input type="checkbox" name="" ontoggle="">OVERHEAD SURVEY</label>
-                    <label class="checkbox-inline"><input type="checkbox" name="" ontoggle="">OTHER</label>
+                    <label class="checkbox-inline"><input type="checkbox" name="filter6">PRESSURE JOINTING</label>
+                    <label class="checkbox-inline"><input type="checkbox" name="filter7">OVERHEAD SURVEY</label>
+                    <label class="checkbox-inline"><input type="checkbox" name="filter8">OTHER</label>
                 </div>
-                <button type="submit" onclick="myFunction()" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Apply filter</button>
             </div>
-
+        </form>
 
         <div class="col-div6 " id="mapid" style="width: 600px; height: 400px;"></div>
     </div>
@@ -112,6 +113,74 @@
 </div>
 </div>
 
+<div class="containerTableDemand">
+    <div class="table-responsive">
+        <table id="table" class="table table-condensed">
+            <thead>
+            <tr>
+                <th>OBJID</th>
+                <th>CRNT_REC_IND</th>
+                <th>DELETE_FLAG</th>
+                <th>ITEM_BITAND_OLD</th>
+                <th>QUEUE_ID</th>
+                <th>QUEUE_NAME</th>
+                <th>DURATION</th>
+                <th>ES_DATE</th>
+                <th>LS_DATE</th>
+                <th>CASE_RBD</th>
+                <th>CASE_STATUS</th>
+                <th>EXCH_POST_USED</th>
+                <th>TS</th>
+                <th>Closed_date</th>
+                <th>Order_OBJID</th>
+                <th>WORK_TYPE_ID</th>
+                <th>MIN_TEAM_SIZE</th>
+                <th>SKILL_RANK</th>
+                <th>SYSMESSAGE</th>
+                <th>MAX_TEAM_SIZE</th>
+                <th>CASE_ID</th>
+                <th>LARGE_ITEM_BITAND</th>
+                <th>ACTION</th>
+                <th>LANDING_DATE</th>
+                <th>ACTION_TIMESTAMP</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% for(var i=0;i<db1.length;i++) { %>
+            <tr>
+                <td><%= db1[i].OBJID %></td>
+                <td><%= db1[i].CRNT_REC_IND %></td>
+                <td><%= db1[i].DELETE_FLAG %></td>
+                <td><%= db1[i].ITEM_BITAND_OLD %></td>
+                <td><%= db1[i].QUEUE_ID %></td>
+                <td><%= db1[i].QUEUE_NAME %></td>
+                <td><%= db1[i].DURATION %></td>
+                <td><%= db1[i].ES_DATE %></td>
+                <td><%= db1[i].LS_DATE %></td>
+                <td><%= db1[i].CASE_RBD %></td>
+                <td><%= db1[i].CASE_STATUS %></td>
+                <td><%= db1[i].EXCH_POST_USED%></td>
+                <td><%= db1[i].TS %></td>
+                <td><%= db1[i].CLOSED_DATE %></td>
+                <td><%= db1[i].ORDER_OBJID %></td>
+                <td><%= db1[i].WORK_TYPE_ID %></td>
+                <td><%= db1[i].MIN_TEAM_SIZE %></td>
+                <td><%= db1[i].SKILL_RANK %></td>
+                <td><%= db1[i].SYSMESSAGE %></td>
+                <td><%= db1[i].MAX_TEAM_SIZE %></td>
+                <td><%= db1[i].CASE_ID %></td>
+                <td><%= db1[i].LARGE_ITEM_BITAND %></td>
+                <td><%= db1[i].ACTION %></td>
+                <td><%= db1[i].LANDING_DATE %></td>
+                <td><%= db1[i].ACTION_TIMESTAMP %></td>
+
+                <!--<td><%- JSON.stringify(db1[0]) %></td>-->
+            </tr>
+            <% } %>
+            </tbody>
+        </table>
+    </div>
+</div>
 <footer>
     <% include ./partials/footer %>
 </footer>

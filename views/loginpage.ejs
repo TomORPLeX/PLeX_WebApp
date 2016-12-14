@@ -1,19 +1,42 @@
-<!DOCTYPE html>
 <html>
 <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-
+    <title>ShowHttpRequestInfo JSP</title>
 </head>
+
 <body>
-<header>
-    <% include ./partials/header %>
-</header>
-<h1><%= title %></h1>
-<p>Welcome to <%= title %></p>
-<footer>
-    <% include ./partials/footer %>
-</footer>
+<pre>
+<h2>Request Information:</h2>
+<b>JSP Request Method:</b> <%= request.getMethod() %>
+    <br><b>Request URI:</b> <%= request.getRequestURI() %>
+    <br><b>Request Protocol:</b> <%= request.getProtocol() %>
+    <br><b>Servlet path:</b> <%= request.getServletPath() %>
+    <br><b>Path info:</b> <%= request.getPathInfo() %>
+    <br><b>Path translated:</b> <%= request.getPathTranslated() %>
+    <br><b>Query string:</b> <%= request.getQueryString() %>
+    <br><b>Content length:</b> <%= request.getContentLength() %>
+    <br><b>Content type:</b> <%= request.getContentType() %>
+    <br><b>Server name:</b> <%= request.getServerName() %>
+    <br><b>Server port:</b> <%= request.getServerPort() %>
+    <br><b>Remote user:</b> <%= request.getRemoteUser() %>
+    <br><b>Remote address:</b> <%= request.getRemoteAddr() %>
+    <br><b>Remote host:</b> <%= request.getRemoteHost() %>
+    <br><b>Authorization scheme:</b> <%= request.getAuthType() %>
+
+    <h2>ALL HTTP Request Headers:</h2>
+    <%
+    java.util.Enumeration headerNames = request.getHeaderNames();
+    while (headerNames.hasMoreElements()) {
+        String name = (String) headerNames.nextElement();
+        String value = request.getHeader(name);
+        out.println("<br><b>" + name + ":</b> " + value);
+    }
+    %>
+
+    <h2>SiteMinder Sample HTTP Request Headers:</h2>
+    <b>SM_USER:</b> <%= request.getHeader("SM_USER") %>
+    <br><b>SM_USERDN:</b> <%= request.getHeader("SM_USERDN") %>
+    <br><b><font color="red">SM_AUTHTYPE:</b> <%= request.getHeader("SM_AUTHTYPE") %></font>
+    <br><b>SM_AUTHORIZED:</b> <%= request.getHeader("SM_AUTHORIZED") %>
+</pre>
 </body>
 </html>
