@@ -15,9 +15,10 @@ function ConnectDB() {
         console.log('Connection Established');
     });
 
+    //implement pool clustering
+
     return pool;
 }
-
 module.exports = ConnectDB();
 
 /*

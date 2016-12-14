@@ -1,13 +1,14 @@
 var express = require('express');
 var router = express.Router();
 var pool = require('../bin/db.js');
+var loginfunction = require("../bin/login.js");
 
 /* GET SQL data. */
 var obj = {};
 var obj1 = {};
 var quer1 = "SELECT * FROM test1 LIMIT 10";
 
-router.get('/', function(req, res, next) {
+router.get('/', loginfunction.isLoggedIn, function(req, res) {
 
         pool.query(quer1, function(err,rows)
         {
@@ -37,5 +38,9 @@ router.get('/', function(req, res, next) {
         });
 
 });
+<<<<<<< HEAD
 
 module.exports = router;
+=======
+module.exports = router;
+>>>>>>> 0a48c6a601a7d03e1334ae16c27125377a8bc8e9
