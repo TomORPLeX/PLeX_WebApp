@@ -8,7 +8,8 @@ function ConnectDB() {
         password: "N5p1A2",
         database: "test",
         connectionLimit: 10,
-        multipleStatements: true
+        multipleStatements: true,
+        supportBigNumbers: true
     });
 
     pool.getConnection(function(err, connection) {
