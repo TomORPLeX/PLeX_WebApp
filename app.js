@@ -17,6 +17,7 @@ var close =  require('./routes/close');
 var logout =  require('./routes/logout');
 var admin =  require('./routes/admin');
 
+
 var app = express();
 
 //set loginFlag to 0
@@ -44,29 +45,23 @@ app.use('/close', close);
 app.use('/logout', logout);
 app.use('/admin', admin);
 app.use('/submit', function(req,res) {
-  console.log('Data Captured, Name: '+req.body.nameinput);
+    console.log('Data Captured, Name: ' + req.body.nameinput);
 
     var obj = {};
     var quer3 = "SELECT * FROM test1 WHERE case_status='1'";
-    var quer4 = "UPDATE test1 SET CASE_STATUS=1 WHERE OBJID="+req.body.nameinput;
-    console.log('Update Query is [ '+quer4+' ]');
-    console.log('Select Query is [ '+quer3+' ]');
+    var quer4 = "UPDATE test1 SET CASE_STATUS=1 WHERE OBJID=" + req.body.nameinput;
+    console.log('Update Query is [ ' + quer4 + ' ]');
+    console.log('Select Query is [ ' + quer3 + ' ]');
 
-    pool.query(quer4, function(err,rows)
-    {
-        if(err)
-        {
+    pool.query(quer4, function (err, rows) {
+        if (err) {
             throw err;
-        } else
-        {
+        } else {
             console.log('Database Updated');
-            pool.query( quer3, function(err,rows)
-            {
-                if(err)
-                {
+            pool.query(quer3, function (err, rows) {
+                if (err) {
                     throw err;
-                } else
-                {
+                } else {
                     obj = {db: rows};
                     res.render('dayminus1', obj);
                     console.log('new data displayed');
@@ -76,6 +71,23 @@ app.use('/submit', function(req,res) {
         }
     });
 });
+
+//app.use('/mapupdate', function(req,res) {
+  //var checkList = {};
+    //function myFunction() {
+      //console.log(req.body.filter0);
+      //console.log(req.body.filter1);
+        //for (i = 0; i <9 ; i++){
+
+           // req.getElementById("filter"+i).name;
+           // console.log(req.getElementById("filter"+i).name);
+      //req.pause();
+     // res.status = 304;
+      //res.send('filters being applied');
+
+           // }
+    //}
+//});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
